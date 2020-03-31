@@ -86,7 +86,7 @@ namespace checkoutservice.Controllers
             //payment
             PaymentModel paymentModel = new PaymentModel()
             {
-                TargetNumber = User.Credit_number_Card,
+                TargetNumber = User.Credit_Card_Number,
                 TotalToPay = totalCost
             };
             try
@@ -126,7 +126,7 @@ namespace checkoutservice.Controllers
                 return new CheckoutModel() { Message = "Error at send Email" };
             }
             //tenemos que regresar el id de la compra y el shippingtrackingid, el cargo de envio a pagar y total a pagar
-            return new CheckoutModel() { OderId = OrderId, Message = "se realizo checkout",
+            return new CheckoutModel() { OrderId = OrderId, Message = "se realizo checkout",
                 ShippingTrackingId = shippingTrackingID.trackingID, TotalToPay = totalCost };
         }
     }
