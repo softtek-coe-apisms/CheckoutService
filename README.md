@@ -4,7 +4,7 @@ This api makes the checkout of the purchase
 # Enviroment Variables
 
 
-| Plugin | README |
+| Variable | Value |
 | ------ | ------ |
 | EmailUrl  | http://localhost:5006/ |
 | PaymentUrl | http://localhost:5002/ |
