@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: checkoutservice
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: checkoutservice
+    spec:
+      containers:
+        - name: checkoutservice
+          image: 'softtekcoeapisms/checkoutservice:1.0'
+          ports:
+            - containerPort: 80
+          env:
+          - name: EmailUrl
+            value: http://emailservice/
+          - name: PaymentUrl
+            value: http://paymentservice/
+          - name: CartUrl
+            value: http://cartservice/
+          - name: CurrencyUrl
+            value: http://currencyservice/
+          - name: ShippingUrl
+            value: http://shippingservice/
+          - name: ProductCatalogUrl
+            value: http://productcatalogservice/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkoutservice
+  labels:
+    name: checkoutservice
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: checkoutservice
+  type: ClusterIP
